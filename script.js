@@ -10,6 +10,7 @@ class Pipe{
   }
 
   show () {
+    fill("green")
     rect(this.x,this.y,this.w,this.h);
     this.x = this.x - 2;
   }
