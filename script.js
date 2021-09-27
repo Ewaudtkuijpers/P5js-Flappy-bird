@@ -31,9 +31,11 @@ function draw() {
     let randHeight = random(height/2);
     let gapheight = 100;
 
-    pipe = new Pipe(500,randHeight + gapheight ,30,height + (randHeight + gapheight),-5);
+    let pipe1 = new Pipe(500,randHeight + gapheight ,30,height + (randHeight + gapheight),-5);
+    let pipe2 = new Pipe(500, 0, 30, randHeight, -5);
 
-    pipes.push(pipe);
+    pipes.push(pipe1);
+    pipes.push(pipe2);
   }
 
   pipes.forEach(p=> p.show());
