@@ -27,8 +27,11 @@ function draw() {
   if(frameCount % 100 == 0){
     console.log("nieuwe pipe!");
     console.log(pipes.length);
-    
-    pipe = new Pipe(500,250,30,50,0);
+
+    let randHeight = random(height/2);
+
+    pipe = new Pipe(500,randHeight,30,150,0);
+
     pipes.push(pipe);
   }
 
