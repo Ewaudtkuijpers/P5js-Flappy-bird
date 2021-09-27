@@ -1,4 +1,5 @@
-var x,y
+var x,y,v
+var wolken
 
 class Pipe{
   constructor(x,y,w,h,vx){
@@ -20,13 +21,17 @@ class Pipe{
 
 var pipes = [];
 
+function preload() {
+ wolken = loadImage('wolken.png');
+}
+
 function setup() {
   createCanvas(500,300);  
 }
 
 function draw() {
-  background(0,225,250);
-
+ image(wolken, 0, 0, width, height);
+ 
   if(frameCount % 100 == 0){
     console.log("nieuwe pipe!");
     console.log(pipes.length);
@@ -42,5 +47,11 @@ function draw() {
   }
 
   pipes.forEach(p=> p.show());
+}
+
+function keypressed(){
+  if (keycode === 32) {
+    velocity
+  }
 }
 
