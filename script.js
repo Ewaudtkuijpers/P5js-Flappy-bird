@@ -13,6 +13,8 @@ class Pipe{
     fill("green")
     rect(this.x,this.y,this.w,this.h);
     this.x = this.x - 2;
+    fill("yellow")
+    ellipse(20,100,32,32);
   }
 }
 
