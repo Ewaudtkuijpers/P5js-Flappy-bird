@@ -29,8 +29,9 @@ function draw() {
     console.log(pipes.length);
 
     let randHeight = random(height/2);
+    let gapheight = 100;
 
-    pipe = new Pipe(500,randHeight,30,150,0);
+    pipe = new Pipe(500,randHeight + gapheight ,30,height + (randHeight + gapheight),-5);
 
     pipes.push(pipe);
   }
