@@ -9,10 +9,11 @@ class Pipe{
     this.w = w;
     this.h = h;
     this.vx = vx;
+    this.c = "green";
   }
 
   show () {
-    fill("green")
+    fill(this.c)
     rect(this.x,this.y,this.w,this.h);
     this.x = this.x - 2;
   }
@@ -41,9 +42,11 @@ class Pipe{
     let d = dist(180, cy, testX, testY);
 
     if (d <= 28) {
+      this.c = "red";
       return true;
     }
     else {
+    this.c = "green";
       return false;
     }
   }
@@ -89,35 +92,15 @@ function draw() {
     }
   }
 
-  pipes.forEach(p=> p.show());
-  // console.log(pipes.length);
-  // console.log(pipes != null);
-  // //var isColliding = false;
-
-  pipes.forEach(p => {   
+  pipes.forEach((p)=> {
     if (p.checkCollison(y)) {
-      console.log("cOlliding");
+      
+      
     }   
-  });
-
-  // for (let i = 0; i < pipes.length; i++) {
-  //   console.log("Check");
-  //   if (pipes[i].checkCollision(y)) {
-  //     console.log("cOlliding");
-  //   }
-  //   else {
-  //     console.log("lol");
-  //   }
-  // }
-
-  // for (let i = 0; i < pipes.length; i++) {
-  //   if (pipes[i].checkCollision(y)) {
-  //     //isColliding = true;
-  //     console.log("110011");
-  //   }
-  // }
-
-  //console.log(isColliding);
+    p.show()
+  });   
+  
+ 
 }
 
 function mousePressed() {
