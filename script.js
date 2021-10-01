@@ -16,6 +16,37 @@ class Pipe{
     rect(this.x,this.y,this.w,this.h);
     this.x = this.x - 2;
   }
+
+  checkCollison (cy) {
+    let testX = 180;
+    let testY = cy;
+    
+    if (180 < this.x) {
+      testX = this.x;
+    }
+    else if (180 > this.x+this.w)
+    {
+      testX = this.x + this.w;
+    }
+
+    if (cy < this.y)
+    {
+      testY = this.y;
+    }
+    else if (cy > this.y+this.h)
+    {
+      testY = this.y + this.h;
+    }
+
+    let d = dist(180, cy, testX, testY);
+
+    if (d <= 28) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }
 
 var pipes = [];
@@ -52,9 +83,41 @@ function draw() {
 
     pipes.push(pipe1);
     pipes.push(pipe2);
+
+    if(pipes.length > 8){
+      pipes.splice(0,2);
+    }
   }
 
   pipes.forEach(p=> p.show());
+  // console.log(pipes.length);
+  // console.log(pipes != null);
+  // //var isColliding = false;
+
+  pipes.forEach(p => {   
+    if (p.checkCollison(y)) {
+      console.log("cOlliding");
+    }   
+  });
+
+  // for (let i = 0; i < pipes.length; i++) {
+  //   console.log("Check");
+  //   if (pipes[i].checkCollision(y)) {
+  //     console.log("cOlliding");
+  //   }
+  //   else {
+  //     console.log("lol");
+  //   }
+  // }
+
+  // for (let i = 0; i < pipes.length; i++) {
+  //   if (pipes[i].checkCollision(y)) {
+  //     //isColliding = true;
+  //     console.log("110011");
+  //   }
+  // }
+
+  //console.log(isColliding);
 }
 
 function mousePressed() {
