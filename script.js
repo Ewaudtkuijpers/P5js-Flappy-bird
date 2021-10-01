@@ -41,7 +41,7 @@ class Pipe{
 
     let d = dist(180, cy, testX, testY);
 
-    if (d <= 28) {
+    if (d <= 14) {
       this.c = "red";
       return true;
     }
