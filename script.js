@@ -72,7 +72,7 @@ function draw() {
   ellipse(180,y,28,28);
   vy += gravity;
   y += vy;
-  y = constrain(y, -500, 300);
+  y = constrain(y, 0, 300);
  
   if(frameCount % 100 == 0){
     console.log("nieuwe pipe!");
