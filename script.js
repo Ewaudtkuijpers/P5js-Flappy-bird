@@ -1,6 +1,8 @@
 var x,y,v, vy
 var wolken
 var gravity
+var gameState = 1;
+var pipes = [];
 
 class Pipe{
   constructor(x,y,w,h,vx){
@@ -52,8 +54,6 @@ class Pipe{
   }
 }
 
-var pipes = [];
-
 function preload() {
  wolken = loadImage('wolken.png');
 }
@@ -67,6 +67,10 @@ function setup() {
 
 function draw() {
  image(wolken, 0, 0, width, height);
+
+  if (gameState == 1) {
+    menu();
+  }
 
   fill("yellow")
   ellipse(180,y,28,28);
@@ -101,6 +105,10 @@ function draw() {
   });   
   
  
+}
+
+function menu() {
+  background ("grey");
 }
 
 function mousePressed() {
