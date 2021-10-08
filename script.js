@@ -1,7 +1,7 @@
 var x,y,v, vy
 var wolken
 var gravity
-var gameState = 2;
+var gameState = 1;
 var pipes = [];
 
 class Pipe{
@@ -84,7 +84,7 @@ if (gameState == 2) {
 }
 
 function menu() {
-  
+
 }
 
 function game(){
@@ -129,4 +129,17 @@ function lose() {
 
 function mousePressed() {
   vy = -8;
+}
+
+function keyPressed() {
+
+  if (keyCode == ENTER) {
+    gameState = 2
+  }
+
+  if (keyCode == BACKSPACE) {
+    pipes.length = 0;
+    gameState = 2
+  }
+
 }
