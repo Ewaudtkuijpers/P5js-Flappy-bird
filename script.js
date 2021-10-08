@@ -45,7 +45,7 @@ class Pipe{
 
     if (d <= 14) {
       gameState = 3;
-      this.c = "red";
+      this.c = "green";
       return true;
     }
     else {
@@ -84,7 +84,7 @@ if (gameState == 2) {
 }
 
 function menu() {
-  background ("grey");
+  
 }
 
 function game(){
@@ -122,7 +122,9 @@ function game(){
 }
 
 function lose() {
-  background ("red");
+  text("Game Over", 185, 75,);
+  textSize(30);
+  fill("yellow");
 }
 
 function mousePressed() {
