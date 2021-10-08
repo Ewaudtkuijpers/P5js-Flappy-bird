@@ -1,7 +1,7 @@
 var x,y,v, vy
 var wolken
 var gravity
-var gameState = 1;
+var gameState = 2;
 var pipes = [];
 
 class Pipe{
@@ -44,6 +44,7 @@ class Pipe{
     let d = dist(180, cy, testX, testY);
 
     if (d <= 14) {
+      gameState = 3;
       this.c = "red";
       return true;
     }
@@ -72,6 +73,21 @@ function draw() {
     menu();
   }
 
+if (gameState == 2) {
+    game();
+  }
+
+  if (gameState == 3) {
+    lose();
+  }
+ 
+}
+
+function menu() {
+  background ("grey");
+}
+
+function game(){
   fill("yellow")
   ellipse(180,y,28,28);
   vy += gravity;
@@ -98,17 +114,15 @@ function draw() {
 
   pipes.forEach((p)=> {
     if (p.checkCollison(y)) {
-      
-      
+            
     }   
     p.show()
   });   
   
- 
 }
 
-function menu() {
-  background ("grey");
+function lose() {
+  background ("red");
 }
 
 function mousePressed() {
