@@ -129,8 +129,10 @@ function game(){
 }
 
 function lose() {
-  text("Je bent dood", 250, 60);
   textSize(30);
+  text("You are dead", 250, 60);
+  textSize(15);
+  text("press [LEFT MOUSE] to play again",250,250)
   fill("yellow");
 }
 
