@@ -3,6 +3,7 @@ var wolken
 var gravity
 var gameState = 1;
 var pipes = [];
+var score = 0;
 
 class Pipe{
   constructor(x,y,w,h,vx){
@@ -119,13 +120,19 @@ function game(){
     }
   }
 
+
+
+  print(round(score));
+
   pipes.forEach((p)=> {
     if (p.checkCollison(y)) {
             
     }   
     p.show()
-  });   
-  
+    if(abs(p.x - 180) <= 14){
+      score = score + 1/28
+    }
+  });     
 }
 
 function lose() {
