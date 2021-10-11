@@ -84,7 +84,14 @@ if (gameState == 2) {
 }
 
 function menu() {
-
+  textSize(30);
+  textAlign(CENTER);
+  text("Flappy Bird",250,60);
+  textSize(20);
+  text("The Game",250,85);
+  textSize(15);
+  text("Press [LEFT MOUSE] to start playing",250,250)
+  fill("yellow");
 }
 
 function game(){
@@ -122,24 +129,16 @@ function game(){
 }
 
 function lose() {
-  text("Game Over", 185, 75,);
+  text("Je bent dood", 250, 60);
   textSize(30);
   fill("yellow");
 }
 
 function mousePressed() {
   vy = -8;
-}
 
-function keyPressed() {
-
-  if (keyCode == ENTER) {
-    gameState = 2
-  }
-
-  if (keyCode == BACKSPACE) {
+    if (gameState != 2) {
     pipes.length = 0;
     gameState = 2
   }
-
 }
