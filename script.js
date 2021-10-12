@@ -4,6 +4,8 @@ var gravity
 var gameState = 1;
 var pipes = [];
 var score = 0;
+var bgMusic
+
 
 class Pipe{
   constructor(x,y,w,h,vx){
@@ -57,6 +59,7 @@ class Pipe{
 }
 
 function preload() {
+ bgMusic = loadSound('assts/Muziek.mp3');
  wolken = loadImage('wolken.png');
 }
 
@@ -70,7 +73,7 @@ function setup() {
 function draw() {
  image(wolken, 0, 0, width, height);
 
-  if (gameState == 1) {
+if (gameState == 1) {
     menu();
   }
 
@@ -81,7 +84,6 @@ if (gameState == 2) {
   if (gameState == 3) {
     lose();
   }
- 
 }
 
 function menu() {
@@ -103,7 +105,6 @@ function game(){
   y = constrain(y, 0, 300);
  
   if(frameCount % 100 == 0){
-    console.log("nieuwe pipe!");
     console.log(pipes.length);
 
     let randHeight = random(height/2);
@@ -150,4 +151,6 @@ function mousePressed() {
     pipes.length = 0;
     gameState = 2
   }
+ 
 }
+
