@@ -1,14 +1,14 @@
-var x,y,v, vy
+var x, y, v, vy
 var wolken
 var gravity
 var gameState = 1;
 var pipes = [];
 var score = 0;
 var bgMusic
+var isPlaying = false;
 
-
-class Pipe{
-  constructor(x,y,w,h,vx){
+class Pipe {
+  constructor(x, y, w, h, vx) {
     this.x = x;
     this.y = y;
     this.w = w;
@@ -17,30 +17,27 @@ class Pipe{
     this.c = "green";
   }
 
-  show () {
+  show() {
     fill(this.c)
-    rect(this.x,this.y,this.w,this.h);
+    rect(this.x, this.y, this.w, this.h);
     this.x = this.x - 2;
   }
 
-  checkCollison (cy) {
+  checkCollison(cy) {
     let testX = 180;
     let testY = cy;
-    
+
     if (180 < this.x) {
       testX = this.x;
     }
-    else if (180 > this.x+this.w)
-    {
+    else if (180 > this.x + this.w) {
       testX = this.x + this.w;
     }
 
-    if (cy < this.y)
-    {
+    if (cy < this.y) {
       testY = this.y;
     }
-    else if (cy > this.y+this.h)
-    {
+    else if (cy > this.y + this.h) {
       testY = this.y + this.h;
     }
 
@@ -52,32 +49,33 @@ class Pipe{
       return true;
     }
     else {
-    this.c = "green";
+      this.c = "green";
       return false;
     }
   }
 }
 
 function preload() {
- bgMusic = loadSound('assts/Muziek.mp3');
- wolken = loadImage('wolken.png');
+  bgMusic = loadSound('Muziek.mp3');
+  wolken = loadImage('wolken.png');
 }
 
 function setup() {
-  createCanvas(500,300);  
+  createCanvas(500, 300);
   gravity = 0.5;
   y = 200;
   vy = -1.0;
+  isPlaying = false;
 }
 
 function draw() {
- image(wolken, 0, 0, width, height);
-
-if (gameState == 1) {
+  image(wolken, 0, 0, width, height);
+  
+  if (gameState == 1) {
     menu();
   }
 
-if (gameState == 2) {
+  if (gameState == 2) {
     game();
   }
 
@@ -89,35 +87,40 @@ if (gameState == 2) {
 function menu() {
   textSize(30);
   textAlign(CENTER);
-  text("Flappy Bird",250,60);
+  text("Flappy Bird", 250, 60);
   textSize(20);
-  text("The Game",250,85);
+  text("The Game", 250, 85);
   textSize(15);
-  text("Press [LEFT MOUSE] to start playing",250,250)
+  text("Press [LEFT MOUSE] to start playing", 250, 250)
   fill("yellow");
 }
 
-function game(){
+function game() {
+  if (!isPlaying) {
+    console.log(isPlaying)
+    bgMusic.play();
+    isPlaying = true;
+  }
+  
   fill("yellow")
-  ellipse(180,y,28,28);
+  ellipse(180, y, 28, 28);
   vy += gravity;
   y += vy;
   y = constrain(y, 0, 300);
- 
-  if(frameCount % 100 == 0){
-    console.log(pipes.length);
 
-    let randHeight = random(height/2);
+  if (frameCount % 100 == 0) {
+
+    let randHeight = random(height / 2);
     let gapheight = 120;
 
-    let pipe1 = new Pipe(500,randHeight + gapheight ,30,height + (randHeight + gapheight),-5);
+    let pipe1 = new Pipe(500, randHeight + gapheight, 30, height + (randHeight + gapheight), -5);
     let pipe2 = new Pipe(500, 0, 30, randHeight, -5);
 
     pipes.push(pipe1);
     pipes.push(pipe2);
 
-    if(pipes.length > 8){
-      pipes.splice(0,2);
+    if (pipes.length > 8) {
+      pipes.splice(0, 2);
     }
   }
 
@@ -125,32 +128,32 @@ function game(){
 
   print(round(score));
 
-  pipes.forEach((p)=> {
+  pipes.forEach((p) => {
     if (p.checkCollison(y)) {
-            
-    }   
-    p.show()
-    if(abs(p.x - 180) <= 14){
-      score = score + 1/28
+
     }
-  });     
+    p.show()
+    if (abs(p.x - 180) <= 14) {
+      score = score + 1 / 28
+    }
+  });
 }
 
 function lose() {
   textSize(30);
   text("You are dead", 250, 60);
   textSize(15);
-  text("press [LEFT MOUSE] to play again",250,250)
+  text("press [LEFT MOUSE] to play again", 250, 250)
   fill("yellow");
 }
 
 function mousePressed() {
   vy = -8;
 
-    if (gameState != 2) {
+  if (gameState != 2) {
     pipes.length = 0;
     gameState = 2
   }
- 
+
 }
 
