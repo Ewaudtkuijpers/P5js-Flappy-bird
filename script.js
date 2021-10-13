@@ -97,8 +97,7 @@ function menu() {
 
 function game() {
   if (!isPlaying) {
-    console.log(isPlaying)
-    bgMusic.play();
+    bgMusic.loop();
     isPlaying = true;
   }
   
