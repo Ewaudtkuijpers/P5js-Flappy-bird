@@ -16,6 +16,7 @@ class Pipe {
     this.h = h;
     this.vx = vx;
     this.c = "green";
+    this.counted = false;
   }
 
   show() {
@@ -59,7 +60,7 @@ class Pipe {
 function preload() {
   bgMusic = loadSound('Muziek.mp3');
   wolken = loadImage('wolken.png');
-  bird = loadImage('bird.png');
+  bird = loadImage('Bird.png');
 }
 
 function setup() {
@@ -72,7 +73,7 @@ function setup() {
 
 function draw() {
   image(wolken, 0, 0, width, height);
-  image(bird,180,y);
+
   
   if (gameState == 1) {
     menu();
@@ -105,7 +106,7 @@ function game() {
   }
   
   fill("yellow")
-  ellipse(180, y, 28, 28);
+  image(bird,160,y - 26, 40, 40);
   vy += gravity;
   y += vy;
   y = constrain(y, 0, 300);
@@ -135,15 +136,21 @@ function game() {
 
     }
     p.show()
-    if (abs(p.x - 180) <= 14) {
-      score = score + 1 / 28
+
+    if (p.x < 180 && !p.counted) {
+      p.counted = true;
+      score += 0.5;
     }
   });
+
+  fill("white");
+  textAlign(CENTER);
+  text("Score: " + round(score), 250, 30);
 }
 
 function lose() {
   textSize(30);
-  text("You are dead", 250, 60);
+  text("You are dead" + " | " + score, 250, 60);
   textSize(15);
   text("press [LEFT MOUSE] to play again", 250, 250)
   fill("yellow");
@@ -155,6 +162,7 @@ function mousePressed() {
   if (gameState != 2) {
     pipes.length = 0;
     gameState = 2
+    score = 0
   }
 
 }
