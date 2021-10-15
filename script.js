@@ -23,7 +23,9 @@ class Pipe {
 
   show() {
     fill(this.c)
-    rect(this.x, this.y, this.w, this.h);
+    //image(pipe1,this.x, this.y, this.w, this.h);
+    image(pipe2,this.x, this.y, this.w, this.h);
+    //rect(this.x, this.y, this.w, this.h);
     this.x = this.x - 2;
   }
 
@@ -183,4 +185,5 @@ function mousePressed() {
   }
 
 }
+
 
