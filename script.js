@@ -47,6 +47,11 @@ class Pipe {
 
     if (d <= 14) {
       gameState = 3;
+        
+      if (score > getHighscore()) {
+        storeItem("highscore", score);
+      }
+
       this.c = "green";
       return true;
     }
@@ -127,10 +132,6 @@ function game() {
     }
   }
 
-
-
-  print(round(score));
-
   pipes.forEach((p) => {
     if (p.checkCollison(y)) {
 
@@ -148,13 +149,24 @@ function game() {
   text("Score: " + round(score), 250, 30);
 }
 
+function getHighscore() {
+  let highscore = getItem("highscore");
+
+  if (highscore == null) {
+    highscore = 0;
+  }
+
+  return highscore;
+}
+
 function lose() {
   textSize(30);
-  text("You are dead" + " | " + score, 250, 60);
+  text("You are dead" + "\nScore: " + score + "\nHighscore: " + getHighscore(), 250, 60);
   textSize(15);
   text("press [LEFT MOUSE] to play again", 250, 250)
   fill("yellow");
 }
+
 
 function mousePressed() {
   vy = -8;
@@ -162,7 +174,8 @@ function mousePressed() {
   if (gameState != 2) {
     pipes.length = 0;
     gameState = 2
-    score = 0
+
+    score = 0;
   }
 
 }
