@@ -1,5 +1,6 @@
 var x, y, v, vy
 var wolken
+var bird
 var gravity
 var gameState = 1;
 var pipes = [];
@@ -58,6 +59,7 @@ class Pipe {
 function preload() {
   bgMusic = loadSound('Muziek.mp3');
   wolken = loadImage('wolken.png');
+  bird = loadImage('bird.png');
 }
 
 function setup() {
@@ -70,6 +72,7 @@ function setup() {
 
 function draw() {
   image(wolken, 0, 0, width, height);
+  image(bird,180,y);
   
   if (gameState == 1) {
     menu();
