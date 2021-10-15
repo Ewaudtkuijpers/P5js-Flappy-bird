@@ -4,6 +4,8 @@ var bird
 var gravity
 var gameState = 1;
 var pipes = [];
+var pipe1
+var pipe2
 var score = 0;
 var bgMusic
 var isPlaying = false;
@@ -47,7 +49,7 @@ class Pipe {
 
     if (d <= 14) {
       gameState = 3;
-        
+
       if (score > getHighscore()) {
         storeItem("highscore", score);
       }
@@ -66,6 +68,8 @@ function preload() {
   bgMusic = loadSound('Muziek.mp3');
   wolken = loadImage('wolken.png');
   bird = loadImage('Bird.png');
+  pipe1 = loadImage('pipe1.png');
+  pipe2 = loadImage('pipe2.png');
 }
 
 function setup() {
@@ -79,7 +83,7 @@ function setup() {
 function draw() {
   image(wolken, 0, 0, width, height);
 
-  
+
   if (gameState == 1) {
     menu();
   }
@@ -109,9 +113,9 @@ function game() {
     bgMusic.loop();
     isPlaying = true;
   }
-  
+
   fill("yellow")
-  image(bird,160,y - 26, 40, 40);
+  image(bird, 160, y - 26, 40, 40);
   vy += gravity;
   y += vy;
   y = constrain(y, 0, 300);
